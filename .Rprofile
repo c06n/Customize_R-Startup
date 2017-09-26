@@ -57,5 +57,5 @@ attach(.env)
 
 # finally
 message("\n*** Successfully loaded .Rprofile ***
-         \n*** Working Directory is", getwd(), "***\n\n")
+         \n*** Working Directory is ", getwd(), " ***\n")
 
