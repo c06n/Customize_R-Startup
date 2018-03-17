@@ -12,50 +12,7 @@ options(digits.secs = 3,
 )
 
 
-# (quiet) Auto loads
-sshhh <- function(a.package){
-  suppressWarnings(suppressPackageStartupMessages(
-    library(a.package, character.only = TRUE)))
-}
-
-auto.loads <- c("tidyverse", "data.table")
-
-if (interactive()) {
-  invisible(sapply(auto.loads, sshhh))
-}
-
-# custom functions
-.env <- new.env()
-
-## get mode of a vector
-.env$Mode <- function(x) {
-
-  stopifnot(is.vector(x))
-
-  rles <- rle(x)
-  out <- rles$values[which(max(rles$lengths) == rles$lengths)]
-
-  out
-
-}
-
-## get rid of rownames
-.env$unrowname <- function(x) {
-
-  rownames(x) <- NULL
-  x
-}
-
-## factor to character
-.env$unfactor <- function(df){
-  id <- sapply(df, is.factor)
-  df[id] <- lapply(df[id], as.character)
-  df
-}
-
-attach(.env)
-
-# finally
+# Startup message
 message("\n*** Successfully loaded .Rprofile ***
          \n*** Working Directory is ", getwd(), " ***\n")
 
